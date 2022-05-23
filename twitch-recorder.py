@@ -129,7 +129,7 @@ class TwitchRecorder:
                               datetime.datetime.now().strftime("%Hh%Mm%Ss"))
                 time.sleep(300)
             elif status == TwitchResponseStatus.OFFLINE:
-                logging.info("%s currently offline, checking again in %s seconds", self.username, self.refresh)
+                # logging.info("%s currently offline, checking again in %s seconds", self.username, self.refresh)
                 time.sleep(self.refresh)
             elif status == TwitchResponseStatus.UNAUTHORIZED:
                 logging.info("unauthorized, will attempt to log back in immediately")
