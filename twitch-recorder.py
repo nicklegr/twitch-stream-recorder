@@ -129,7 +129,7 @@ class TwitchRecorder:
                               datetime.datetime.now().strftime("%Hh%Mm%Ss"))
                 time.sleep(300)
             elif status == TwitchResponseStatus.OFFLINE:
-                logging.info("%s currently offline, checking again in %s seconds", self.username, self.refresh)
+                # logging.info("%s currently offline, checking again in %s seconds", self.username, self.refresh)
                 time.sleep(self.refresh)
             elif status == TwitchResponseStatus.UNAUTHORIZED:
                 logging.info("unauthorized, will attempt to log back in immediately")
@@ -139,8 +139,8 @@ class TwitchRecorder:
 
                 channels = info["data"]
                 channel = next(iter(channels), None)
-                filename = self.username + " - " + datetime.datetime.now() \
-                    .strftime("%Y-%m-%d %Hh%Mm%Ss") + " - " + channel.get("title") + ".mp4"
+                filename = self.username + "-" + datetime.datetime.now() \
+                    .strftime("%Y%m%d_%H%M%S") + "-" + channel.get("title") + ".ts"
 
                 # clean filename from unnecessary characters
                 filename = "".join(x for x in filename if x.isalnum() or x in [" ", "-", "_", "."])
