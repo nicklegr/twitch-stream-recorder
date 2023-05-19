@@ -1,9 +1,21 @@
 version: "2"
 
 services:
-  recorder:
+  recorder_1:
     build: .
-    command: --username $TARGET_USER
+    command: --username $TARGET_USER_1
+    restart: unless-stopped
+    volumes:
+      - $OUTPUT_PATH:/output
+    environment:
+      OUTPUT_PATH: /output
+      CLIENT_ID: $CLIENT_ID
+      CLIENT_SECRET: $CLIENT_SECRET
+    user: "1000:1000"
+
+  recorder_2:
+    build: .
+    command: --username $TARGET_USER_2
     restart: unless-stopped
     volumes:
       - $OUTPUT_PATH:/output
