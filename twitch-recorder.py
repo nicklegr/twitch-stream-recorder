@@ -164,7 +164,7 @@ class TwitchRecorder:
 def main(argv):
     twitch_recorder = TwitchRecorder()
     usage_message = "twitch-recorder.py -u <username> -q <quality>"
-    logging.basicConfig(filename="twitch-recorder.log", level=logging.INFO)
+    logging.basicConfig(filename="/tmp/twitch-recorder.log", level=logging.INFO)
     logging.getLogger().addHandler(logging.StreamHandler())
 
     try:
