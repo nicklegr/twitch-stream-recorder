@@ -10,8 +10,6 @@ import time
 
 import requests
 
-import config
-
 
 class TwitchResponseStatus(enum.Enum):
     ONLINE = 0
@@ -27,15 +25,15 @@ class TwitchRecorder:
         self.ffmpeg_path = "ffmpeg"
         self.disable_ffmpeg = False
         self.refresh = 15
-        self.root_path = config.root_path
+        self.root_path = os.environ["OUTPUT_PATH"]
 
         # user configuration
-        self.username = config.username
+        self.username = ""
         self.quality = "best"
 
         # twitch configuration
-        self.client_id = config.client_id
-        self.client_secret = config.client_secret
+        self.client_id = os.environ["CLIENT_ID"]
+        self.client_secret = os.environ["CLIENT_SECRET"]
         self.token_url = "https://id.twitch.tv/oauth2/token?client_id=" + self.client_id + "&client_secret=" \
                          + self.client_secret + "&grant_type=client_credentials"
         self.url = "https://api.twitch.tv/helix/streams"
