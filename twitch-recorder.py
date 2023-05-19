@@ -7,6 +7,7 @@ import subprocess
 import sys
 import shutil
 import time
+import signal
 
 import requests
 
@@ -160,8 +161,12 @@ class TwitchRecorder:
                 logging.info("processing is done, going back to checking...")
                 time.sleep(self.refresh)
 
+def sigterm_handler(_signo, _stack_frame):
+    sys.exit(0)
 
 def main(argv):
+    signal.signal(signal.SIGTERM, sigterm_handler)
+
     twitch_recorder = TwitchRecorder()
     usage_message = "twitch-recorder.py -u <username> -q <quality>"
     logging.basicConfig(filename="/tmp/twitch-recorder.log", level=logging.INFO)
