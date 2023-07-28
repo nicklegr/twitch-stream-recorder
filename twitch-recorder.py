@@ -113,8 +113,10 @@ class TwitchRecorder:
             if e.response:
                 if e.response.status_code == 401:
                     status = TwitchResponseStatus.UNAUTHORIZED
-                if e.response.status_code == 404:
+                elif e.response.status_code == 404:
                     status = TwitchResponseStatus.NOT_FOUND
+                else:
+                    logging.error("http error %d: %s", e.response.status_code, e.response.text)
         return status, info
 
     def loop_check(self, recorded_path, processed_path):
